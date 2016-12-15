@@ -142,19 +142,21 @@
 	    //呼叫AccountCheck Servlet
 		//檢查通過後換上 glyphicon glyphicon-ok-sign 圖示
         //檢查失敗後換上 glyphicon glyphicon-remove-sign 圖示
-        $.get("AccountCheck Servlet",{"name":"$(#username).val()"},function(){
+        $(function(){
+        	$('#username').blur(function(){
+        $.get("AccountCheck Servlet",{"name":$("#username").val()},function(){
         	if(data=="帳號不存在"){
         	$("#span1>span").removeClass("glyphicon glyphicon-question-sign")
         	.removeClass("glyphicon glyphicon-ok-sign")
         	.addClass("glyphicon glyphicon-remove-sign")	
-        	}else{
+        	}else if(data=="帳號已存在"){
         		$('#span1>span').removeClass("glyphicon glyphicon-question-sign")
             	.removeClass("glyphicon glyphicon-remove-sign")
             	.addClass("glyphicon glyphicon-ok-sign")
-        	}
-        
-        })
-        
+        	};
+        });
+        });
+        });
         //將表單的資料傳給Register Servlet
 
 	</script>
